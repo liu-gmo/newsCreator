@@ -157,7 +157,7 @@ public class GravesLSTMCharModellingExample {
 	}
 
 	private static JapaneseWordIterator getNewsIterator(int miniBatchSize, int sequenceLength) throws Exception{
-		String inputSql = "select id, post_content from xb_corpus where post_length < 5000";
+		String inputSql = "select id, post_content from xb_corpus where post_length < 8000";
 		//String inputSql = "select id, post_title from xb_corpus where post_length < 10000";
 
 		List<DocItem> rs = LoadDataFromDB.loadDataFromSqlite(null, inputSql);

@@ -125,6 +125,8 @@ public class JapaneseWordIterator implements DataSetIterator {
             dCnt++;
         }
 
+        System.out.println("documents: " + (dCnt - 1));
+
         idxToWord = new ArrayList(wordToIdxMap.keySet());
 
         Iterator it = words.iterator();
@@ -139,6 +141,7 @@ public class JapaneseWordIterator implements DataSetIterator {
             wCnt++;
         }
         //words = new ArrayList(docWords.values());
+        System.out.println("size of vocabulary:" + wordToIdxMap.size());
 
         if( exampleLength >= wCnt ) throw new IllegalArgumentException("exampleLength="+exampleLength
                 +" cannot exceed number of valid characters in file ("+wCnt+")");

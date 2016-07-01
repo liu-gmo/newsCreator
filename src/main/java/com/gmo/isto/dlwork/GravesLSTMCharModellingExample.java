@@ -53,7 +53,7 @@ import java.util.Random;
 public class GravesLSTMCharModellingExample {
 	public static void main( String[] args ) throws Exception {
 		int lstmLayerSize = 200;					//Number of units in each GravesLSTM layer
-		int miniBatchSize = 8;						//Size of mini batch to use when  training
+		int miniBatchSize = 32;						//Size of mini batch to use when  training
 		int exampleLength = 200;					//Length of each training example sequence to use. This could certainly be increased
         int tbpttLength = 40;                       //Length for truncated backpropagation through time. i.e., do parameter updates ever 50 characters
 		int numEpochs = 3;							//Total number of training epochs

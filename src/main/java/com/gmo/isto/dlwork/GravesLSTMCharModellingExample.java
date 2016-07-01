@@ -52,7 +52,7 @@ import java.util.Random;
  */
 public class GravesLSTMCharModellingExample {
 	public static void main( String[] args ) throws Exception {
-		int lstmLayerSize = 1000;					//Number of units in each GravesLSTM layer
+		int lstmLayerSize = 500;					//Number of units in each GravesLSTM layer
 		int miniBatchSize = 32;						//Size of mini batch to use when  training
 		int exampleLength = 200;					//Length of each training example sequence to use. This could certainly be increased
         int tbpttLength = 40;                       //Length for truncated backpropagation through time. i.e., do parameter updates ever 50 characters
@@ -76,8 +76,8 @@ public class GravesLSTMCharModellingExample {
 
 		//Set up network configuration:
 		MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
-			.optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT).iterations(1)
-			.learningRate(0.1)
+			.optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT).iterations(3)
+			.learningRate(0.01)
 			.rmsDecay(0.95)
 			.seed(12345)
 			.regularization(true)
@@ -165,7 +165,7 @@ public class GravesLSTMCharModellingExample {
 	}
 
 	private static JapaneseWordIterator getNewsIterator(int miniBatchSize, int sequenceLength) throws Exception{
-		String inputSql = "select id, post_content from xb_corpus where post_length < 2000 limit 1000";
+		String inputSql = "select id, post_content from xb_corpus where post_length < 2000 limit 500";
 		//String inputSql = "select id, post_title from xb_corpus where post_length < 10000";
 
 		List<DocItem> rs = LoadDataFromDB.loadDataFromSqlite(null, inputSql);

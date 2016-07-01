@@ -155,7 +155,7 @@ public class JapaneseWordIterator implements DataSetIterator {
         for( int i=0; i<nMinibatchesPerEpoch; i++ ){
             exampleStartOffsets.add(i * exampleLength);
         }
-        Collections.shuffle(exampleStartOffsets,rng);
+        //Collections.shuffle(exampleStartOffsets,rng);
 
         System.out.println("nMinibatchesPerEpoch: " + nMinibatchesPerEpoch);
     }
@@ -227,7 +227,7 @@ public class JapaneseWordIterator implements DataSetIterator {
         for( int i=0; i<nMinibatchesPerEpoch; i++ ){
             exampleStartOffsets.add(i * exampleLength);
         }
-        Collections.shuffle(exampleStartOffsets,rng);
+        //Collections.shuffle(exampleStartOffsets,rng);
     }
 
     public int batch() {

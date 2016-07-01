@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by usr0101862 on 2016/06/22.
  */
 public class JapaneseWordIterator implements DataSetIterator {
-    public static final int MinWordFreq = 10;
+    public static final int MinWordFreq = 2;
 
     private Map<String, Integer> wordFreqMap;
     //Maps each character to an index ind the input/output
@@ -156,6 +156,8 @@ public class JapaneseWordIterator implements DataSetIterator {
             exampleStartOffsets.add(i * exampleLength);
         }
         Collections.shuffle(exampleStartOffsets,rng);
+
+        System.out.println("nMinibatchesPerEpoch: " + nMinibatchesPerEpoch);
     }
 
     public String convertIndexToWord( int idx ){
@@ -182,6 +184,7 @@ public class JapaneseWordIterator implements DataSetIterator {
         if( exampleStartOffsets.size() == 0 ) throw new NoSuchElementException();
 
         int currMinibatchSize = Math.min(num, exampleStartOffsets.size());
+        System.out.println("num: " + num + ", examples: " + exampleStartOffsets.size());
         //Allocate space:
         //Note the order here:
         // dimension 0 = number of examples in minibatch
@@ -207,7 +210,7 @@ public class JapaneseWordIterator implements DataSetIterator {
     }
 
     public int totalExamples() {
-        return (words.size()-1) / miniBatchSize - 2;
+        return (words.size()-1) / exampleLength - 2;
     }
 
     public int inputColumns() {
@@ -222,7 +225,7 @@ public class JapaneseWordIterator implements DataSetIterator {
         exampleStartOffsets.clear();
         int nMinibatchesPerEpoch = totalExamples();
         for( int i=0; i<nMinibatchesPerEpoch; i++ ){
-            exampleStartOffsets.add(i * miniBatchSize);
+            exampleStartOffsets.add(i * exampleLength);
         }
         Collections.shuffle(exampleStartOffsets,rng);
     }
